@@ -1,7 +1,7 @@
 # d1tablex
 
 Make HTML table searchable and sortable.  
-[Demo & docs](http://vadimkor.ru/projects/tablex/)
+[Demo & docs](http://vadimkor.ru/projects/d1#tablex)
 
 ## Install
 

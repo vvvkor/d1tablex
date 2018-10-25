@@ -1,0 +1,24 @@
+{
+  "name": "d1tablex",
+  "version": "1.0.6",
+  "description": "Filter and sort HTML table",
+  "main": "d1tablex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vvvkor/d1tablex"
+  },
+  "keywords": [
+    "table",
+    "filter",
+    "search",
+    "sort"
+  ],
+  "author": "Vadim Korolev <vadimkor@yandex.ru> (https://github.com/vvvkor)",
+  "license": "MIT",
+  "dependencies": {
+    "d1css": "^1.1"
+  }
+}

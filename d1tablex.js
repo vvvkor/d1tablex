@@ -4,22 +4,25 @@ main = new(function() {
 
   "use strict";
 
-  this.q = 'table.sort, table[data-filter]';
-  this.wait = 200;
-  this.c = {
-    fltr: 'bg-w', // filter-on - non-empty filter field
-    scan: 'text-i', // col-scan - searchable columns' header (used if "data-filter-cols" is set)
-    show: '', // row-show - matching row
-    hide: 'hide', // row-hide - non-matching row (if not set the "display:none" is used)
-    sort: '', // col-sort - sortable column's header
-    asc:  'bg-y', // col-asc - !non-empty! - header or currently sorted column (ascending)
-    desc: 'bg-w', // col-desc - header or currently sorted column (descending)
+  this.opt = {
+    filterAttr: 'data-filter',
+    qsSort: 'table.sort',
+    wait: 200,
+    cFilter: 'bg-w', // filter-on - non-empty filter field
+    cScan: 'text-i', // col-scan - searchable columns' header (used if "data-filter-cols" is set)
+    cShow: '', // row-show - matching row
+    cHide: 'hide', // row-hide - non-matching row (if not set the "display:none" is used)
+    cSort: '', // col-sort - sortable column's header
+    cAsc:  'bg-y', // col-asc - !non-empty! - header or currently sorted column (ascending)
+    cDesc: 'bg-w', // col-desc - header or currently sorted column (descending)
   };
 
   this.init = function(opt) {
-    var t = document.querySelectorAll(this.q);
+    var i;
+    for(i in opt) this.opt[i] = opt[i];
+    var t = document.querySelectorAll(this.opt.qsSort + ', table[' + this.opt.filterAttr + ']');
     //t.forEach(this.prepare.bind(this));
-    for (var i = 0; i < t.length; i++) this.prepare(t[i]);
+    for (i = 0; i < t.length; i++) this.prepare(t[i]);
   }
 
   this.prepare = function(n) {
@@ -35,11 +38,11 @@ main = new(function() {
     var h = [];
     for (j = 0; j < rh.cells.length; j++) {
       h[j] = rh.cells[j];
-      //if (this.c.sort && this.isSortable(rh.cells[j])) h[j].classList.add(this.c.sort);
+      //if (this.opt.cSort && this.isSortable(rh.cells[j])) h[j].classList.add(this.opt.cSort);
     }
     //var inp = app.ins('input','',{type:'search',size:4},rh.cells[0]);
     n.vCase = (n.getAttribute('data-case') !== null);
-    var fq = n.getAttribute('data-filter');
+    var fq = n.getAttribute(this.opt.filterAttr);
     n.vInp = fq
       ? document.querySelector(fq)
       : null;
@@ -62,7 +65,7 @@ main = new(function() {
     if (n.classList.contains('sort')) {
       for (j = 0; j < h.length; j++)
         if (this.isSortable(h[j])) {
-          if (this.c.sort) h[j].classList.add(this.c.sort);
+          if (this.opt.cSort) h[j].classList.add(this.opt.cSort);
           //h[j].onclick = this.doSort.bind(this,n,h[j]);
           h[j].addEventListener('click', this.doSort.bind(this, n, h[j]), false);
         }
@@ -72,9 +75,9 @@ main = new(function() {
   this.doFilter = function(t, e) {
     if (t.vPrev !== t.vInp.value || !e) {
       t.vPrev = t.vInp.value;
-      if (this.c.fltr) t.vInp.classList[t.vPrev.length > 0 ? 'add' : 'remove'](this.c.fltr);
+      if (this.opt.cFilter) t.vInp.classList[t.vPrev.length > 0 ? 'add' : 'remove'](this.opt.cFilter);
       clearTimeout(t.vTimeout);
-      t.vTimeout = setTimeout(this.filter.bind(this, t, t.vInp.value), this.wait);
+      t.vTimeout = setTimeout(this.filter.bind(this, t, t.vInp.value), this.opt.wait);
     }
   }
 
@@ -83,7 +86,7 @@ main = new(function() {
       ? (!e.target.closest('a,input,select,label'))
       : (' A INPUT SELECT LABEL ').indexOf(' ' + e.target.tagName + ' ') == -1)
     {
-      //	e.preventDefault();
+      //e.preventDefault();
       this.sort(t, th.cellIndex);
     }
   }
@@ -110,9 +113,9 @@ main = new(function() {
     if (!n.vCols) {
       n.vCols = n.getAttribute('data-filter-cols');
       n.vCols = n.vCols ? n.vCols.split(/\D+/) : false;
-      if (n.vCols && this.c.scan)
+      if (n.vCols && this.opt.cScan)
         for (i = 0; i < n.vCols.length; i++) {
-          if (n.vHead[n.vCols[i]]) n.vHead[n.vCols[i]].classList.add(this.c.scan);
+          if (n.vHead[n.vCols[i]]) n.vHead[n.vCols[i]].classList.add(this.opt.cScan);
         }
     }
     for (i = 0; i < n.vData.length; i++) {
@@ -125,9 +128,9 @@ main = new(function() {
         s = '|' + data.join('|') + '|';
         hide = !this.matches(s, q, n.vCase);
       }
-      if(this.c.hide) n.vData[i].n.classList[hide ? 'add' : 'remove'](this.c.hide);
+      if(this.opt.cHide) n.vData[i].n.classList[hide ? 'add' : 'remove'](this.opt.cHide);
       else n.vData[i].n.style.display = hide ? 'none' : '';
-      if(this.c.show) n.vData[i].n.classList[hide ? 'remove' : 'add'](this.c.show);
+      if(this.opt.cShow) n.vData[i].n.classList[hide ? 'remove' : 'add'](this.opt.cShow);
       if (!hide) cnt++;
     }
     if (n.vInp) {
@@ -147,7 +150,7 @@ main = new(function() {
   }
 
   this.sort = function(n, col, desc) {
-    if (desc === undefined) desc = (this.c.asc && n.vHead[col].classList.contains(this.c.asc));
+    if (desc === undefined) desc = (this.opt.cAsc && n.vHead[col].classList.contains(this.opt.cAsc));
     n.vData.sort(this.cmp.bind(this, col));
     if (desc) n.vData.reverse();
     for (var j = 0; j < n.vHead.length; j++) this.mark(n.vHead[j], j == col ? (desc ? -1 : 1) : 0);
@@ -162,8 +165,8 @@ main = new(function() {
   }
 
   this.mark = function(h, d) {
-    if (this.c.asc) h.classList[d > 0 ? 'add' : 'remove'](this.c.asc);
-    if (this.c.desc) h.classList[d < 0 ? 'add' : 'remove'](this.c.desc);
+    if (this.opt.cAsc) h.classList[d > 0 ? 'add' : 'remove'](this.opt.cAsc);
+    if (this.opt.cDesc) h.classList[d < 0 ? 'add' : 'remove'](this.opt.cDesc);
   }
 
   this.cmp = function(by, a, b) {

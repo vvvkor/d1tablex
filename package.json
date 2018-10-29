@@ -1,6 +1,6 @@
 {
   "name": "d1tablex",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Filter and sort HTML table",
   "main": "d1tablex.js",
   "scripts": {

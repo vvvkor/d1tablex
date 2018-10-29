@@ -13,8 +13,8 @@ main = new(function() {
     cShow: '', // row-show - matching row
     cHide: 'hide', // row-hide - non-matching row (if not set the "display:none" is used)
     cSort: '', // col-sort - sortable column's header
-    cAsc:  'bg-y', // col-asc - !non-empty! - header or currently sorted column (ascending)
-    cDesc: 'bg-w', // col-desc - header or currently sorted column (descending)
+    cAsc:  'bg-y', // col-asc - !non-empty! - header of currently sorted column (ascending)
+    cDesc: 'bg-w', // col-desc - header of currently sorted column (descending)
   };
 
   this.init = function(opt) {

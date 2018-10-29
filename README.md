@@ -11,6 +11,13 @@ npm install d1tablex
 
 ## Usage
 
+On page load call:
+```
+d1tablex.init(options);
+```
+
+In your markup:
+
 * Place rows to be filtered and sorted inside first ``tbody`` of the table.
 * Add ``sort`` class to enable sorting columns with 
   * strings
@@ -24,6 +31,58 @@ npm install d1tablex
   * add ``data-filter-report`` attribute pointing at node where to output the number of matching rows
 * Add ``data-case`` attribute for case-sensitive filtration and sorting
 * Customize styles for involved nodes
+
+## Options
+
+### filterAttr
+
+Table attribute, containing query selector of search input field.  
+Default: ``"data-filter"``
+
+### qsSort
+
+Query selector of sortable table.  
+Default: ``"table.sort"``
+
+### wait
+
+Timeout before applying filter after search string input, ms.  
+Default: ``200``
+
+### cFilter
+
+CSS class of non-empty filter field.  
+Default: ``"bg-w"``
+
+### cScan
+
+CSS class of searchable columns' header (used if ``data-filter-cols`` is set).  
+Default: ``"text-i"``
+
+### cShow
+
+CSS class of matching row.  
+Default: ``""``
+
+### cHide
+
+CSS class of non-matching row. If empty then ``"display:none;"`` is used.  
+Default: ``"hide"``
+
+### cSort
+
+CSS class of sortable column's header.  
+Default: ``""``
+
+### cAsc
+
+CSS class of header of currently sorted column (ascending).  
+Default: ``"bg-y"``
+
+### cDesc
+
+CSS class of header of currently sorted column (descending).  
+Default: ``"bg-w"``
 
 ## Browser Support
 

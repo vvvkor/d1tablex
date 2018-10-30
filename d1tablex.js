@@ -40,7 +40,7 @@ main = new(function() {
       h[j] = rh.cells[j];
       //if (this.opt.cSort && this.isSortable(rh.cells[j])) h[j].classList.add(this.opt.cSort);
     }
-    //var inp = app.ins('input','',{type:'search',size:4},rh.cells[0]);
+    //var inp = d1.ins('input','',{type:'search',size:4},rh.cells[0]);
     n.vCase = (n.getAttribute('data-case') !== null);
     var fq = n.getAttribute(this.opt.filterAttr);
     n.vInp = fq

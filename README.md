@@ -35,25 +35,30 @@ In your markup:
 
 ## Options
 
-### filterAttr
+### attrFilter
 
 Table attribute, containing query selector of search input field.  
 Default: ``"data-filter"``
 
-### qsSort
+### cAsc
 
-Query selector of sortable table.  
-Default: ``"table.sort"``
+CSS class of header of currently sorted column (ascending).  
+Default: ``"bg-y"``
 
-### wait
+### cDesc
 
-Timeout before applying filter after search string input, ms.  
-Default: ``200``
+CSS class of header of currently sorted column (descending).  
+Default: ``"bg-w"``
 
 ### cFilter
 
 CSS class of non-empty filter field.  
 Default: ``"bg-w"``
+
+### cHide
+
+CSS class of non-matching row. If empty then ``"display:none;"`` is used.  
+Default: ``"hide"``
 
 ### cScan
 
@@ -65,25 +70,20 @@ Default: ``"text-i"``
 CSS class of matching row.  
 Default: ``""``
 
-### cHide
-
-CSS class of non-matching row. If empty then ``"display:none;"`` is used.  
-Default: ``"hide"``
-
 ### cSort
 
 CSS class of sortable column's header.  
 Default: ``""``
 
-### cAsc
+### qsSort
 
-CSS class of header of currently sorted column (ascending).  
-Default: ``"bg-y"``
+Query selector of sortable table.  
+Default: ``"table.sort"``
 
-### cDesc
+### wait
 
-CSS class of header of currently sorted column (descending).  
-Default: ``"bg-w"``
+Timeout before applying filter after search string input, ms.  
+Default: ``200``
 
 ## Browser Support
 

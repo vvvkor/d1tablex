@@ -5,9 +5,7 @@ main = new(function() {
   "use strict";
 
   this.opt = {
-    filterAttr: 'data-filter',
-    qsSort: 'table.sort',
-    wait: 200,
+    attrFilter: 'data-filter',
     cFilter: 'bg-w', // filter-on - non-empty filter field
     cScan: 'text-i', // col-scan - searchable columns' header (used if "data-filter-cols" is set)
     cShow: '', // row-show - matching row
@@ -15,12 +13,14 @@ main = new(function() {
     cSort: '', // col-sort - sortable column's header
     cAsc:  'bg-y', // col-asc - !non-empty! - header of currently sorted column (ascending)
     cDesc: 'bg-w', // col-desc - header of currently sorted column (descending)
+    qsSort: 'table.sort',
+    wait: 200
   };
 
   this.init = function(opt) {
     var i;
     for(i in opt) this.opt[i] = opt[i];
-    var t = document.querySelectorAll(this.opt.qsSort + ', table[' + this.opt.filterAttr + ']');
+    var t = document.querySelectorAll(this.opt.qsSort + ', table[' + this.opt.attrFilter + ']');
     //t.forEach(this.prepare.bind(this));
     for (i = 0; i < t.length; i++) this.prepare(t[i]);
   }
@@ -42,7 +42,7 @@ main = new(function() {
     }
     //var inp = d1.ins('input','',{type:'search',size:4},rh.cells[0]);
     n.vCase = (n.getAttribute('data-case') !== null);
-    var fq = n.getAttribute(this.opt.filterAttr);
+    var fq = n.getAttribute(this.opt.attrFilter);
     n.vInp = fq
       ? document.querySelector(fq)
       : null;

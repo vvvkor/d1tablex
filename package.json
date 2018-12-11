@@ -1,6 +1,6 @@
 {
   "name": "d1tablex",
-  "version": "1.0.11",
+  "version": "1.2.0",
   "description": "Filter and sort HTML table",
   "main": "d1tablex.js",
   "scripts": {
@@ -19,6 +19,6 @@
   "author": "Vadim Korolev <vadimkor@yandex.ru> (https://github.com/vvvkor)",
   "license": "MIT",
   "dependencies": {
-    "d1css": "^1.1"
+    "d1css": "^1.2"
   }
 }

@@ -1,3 +1,5 @@
+//uses d1
+
 //table.sort[data-filter][data-filter-report][data-case][data-filter-cols]
 (function(){
 main = new(function() {
@@ -45,7 +47,7 @@ main = new(function() {
     var fq = n.getAttribute(this.opt.attrFilter);
     n.vInp = fq
       ? document.querySelector(fq)
-      : null;
+      : n.querySelector('[name="_q"]');
     if (n.vInp) {
       //n.vInp.onsearch = n.vInp.onkeyup = this.doFilter.bind(this,n);
       n.vInp.addEventListener('input', this.doFilter.bind(this, n), false);

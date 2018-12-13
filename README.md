@@ -1,7 +1,7 @@
 # d1tablex
 
 Add-on for [d1](https://github.com/vvvkor/d1).  
-Make HTML table searchable and sortable.  
+Filter and sort HTML table.  
 [Demo & docs](http://vadimkor.ru/projects/d1#tablex)
 
 ## Install

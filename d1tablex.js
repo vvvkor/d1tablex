@@ -1,5 +1,5 @@
 /*! d1tablex https://github.com/vvvkor/d1tablex */
-/* Make HTML table searchable and sortable */
+/* Filter and sort HTML table */
 
 //table.sort[data-filter][data-filter-report][data-case][data-filter-cols]
 (function(){

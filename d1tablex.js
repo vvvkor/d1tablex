@@ -2,6 +2,7 @@
 /* Filter and sort HTML table */
 
 //table.sort[data-filter][data-filter-report][data-case][data-filter-cols]
+if(typeof module !== "undefined") var d1 = require('d1css');
 (function(){
 main = new(function() {
 

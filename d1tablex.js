@@ -52,7 +52,8 @@ main = new(function() {
       : n.querySelector('[name="_q"]');
     if (n.vInp) {
       //n.vInp.onsearch = n.vInp.onkeyup = this.doFilter.bind(this,n);
-      n.vInp.addEventListener('input', this.doFilter.bind(this, n), false);
+      if(!n.vInp.vListen) n.vInp.addEventListener('input', this.doFilter.bind(this, n), false);
+      n.vInp.vListen = 1;
       this.doFilter(n);
     }
     for (i = start; i < tb.rows.length; i++) {
@@ -71,7 +72,8 @@ main = new(function() {
         if (this.isSortable(h[j])) {
           if (this.opt.cSort) h[j].classList.add(this.opt.cSort);
           //h[j].onclick = this.doSort.bind(this,n,h[j]);
-          h[j].addEventListener('click', this.doSort.bind(this, n, h[j]), false);
+          if(!h[j].vListen) h[j].addEventListener('click', this.doSort.bind(this, n, h[j]), false);
+          h[j].vListen = 1;
         }
     }
   }

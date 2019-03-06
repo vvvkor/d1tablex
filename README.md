@@ -26,6 +26,7 @@ In your markup:
   * dates
   * time intervals
   * bytes
+* Add ``data-unsort`` attribute to column header to disable sorting of this column
 * Add ``data-filter`` attribute with selector pointing at search input field to enable rows filtering
   * searches in all columns by default
   * add ``data-filter-cols`` attribute containing space-separated list of zero-based indexes of searchable columns

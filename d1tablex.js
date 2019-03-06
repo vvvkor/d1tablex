@@ -98,7 +98,8 @@ main = new(function() {
   }
 
   this.isSortable = function(th) {
-    return this.val(th).length > 0;
+    //return this.val(th).length > 0;
+    return !th.hasAttribute('data-unsort');
   }
 
   this.val = function(s, cs) {

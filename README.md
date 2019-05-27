@@ -2,7 +2,7 @@
 
 Add-on for [d1](https://github.com/vvvkor/d1).  
 Filter and sort HTML table.  
-[Demo & docs](http://vadimkor.ru/projects/d1#tablex)
+[Demo & docs](https://vvvkor.github.io/d1#tablex)
 
 ## Install
 

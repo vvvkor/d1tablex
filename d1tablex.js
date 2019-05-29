@@ -262,6 +262,8 @@ main = new(function() {
     return NaN;
   }
 
+  d1.plug(this);
+
 })();
 
   if(typeof module !== "undefined") module.exports = main;

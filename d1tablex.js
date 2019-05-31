@@ -8,6 +8,8 @@ main = new(function() {
 
   "use strict";
 
+  this.name = 'tablex';
+  
   this.opt = {
     attrFilter: 'data-filter',
     cFilter: 'bg-w', // filter-on - non-empty filter field

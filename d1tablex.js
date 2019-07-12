@@ -9,6 +9,8 @@ main = new(function() {
   "use strict";
 
   this.name = 'tablex';
+  this.lang = '';
+  this.skipComma = 0;
   
   this.opt = {
     attrFilter: 'data-filter',
@@ -26,6 +28,9 @@ main = new(function() {
   this.init = function(opt) {
     var i;
     for(i in opt) this.opt[i] = opt[i];
+    this.lang = document.documentElement.getAttribute('lang') || 'en';
+    this.skipComma = (this.lang=='en');
+    console.log(this.lang);
     var t = document.querySelectorAll(this.opt.qsSort + ', table[' + this.opt.attrFilter + ']');
     //t.forEach(this.prepare.bind(this));
     for (i = 0; i < t.length; i++) this.prepare(t[i]);
@@ -200,9 +205,8 @@ main = new(function() {
     if (isNaN(aa) || isNaN(bb)) {
       //number?
       mode = 'n';
-      //use Number instead of parseFloat for more strictness
-      aa = parseFloat(a.replace(/(\$|\,)/g, ''));
-      bb = parseFloat(b.replace(/(\$|\,)/g, ''));
+      aa = this.nr(a);
+      bb = this.nr(b);
     }
     if (isNaN(aa) || isNaN(bb)) {
       //string
@@ -212,7 +216,14 @@ main = new(function() {
     }
     //console.log('['+mode+'] A '+a+' = '+aa+' == '+(new Date(aa))+'; B '+b+' = '+bb+' == '+(new Date(bb)));
     return aa < bb ? -1 : (aa > bb ? 1 : 0);
-
+  }
+  
+  this.nr = function(s){
+    //use Number instead of parseFloat for more strictness
+    s = this.skipComma
+      ? s.replace(/(\$|\,|\s)/g, '')
+      : s.replace(/(\$|\s)/g, '').replace(',', '.');
+    return parseFloat(s);
   }
 
   this.dt = function(s) {

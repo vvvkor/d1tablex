@@ -30,7 +30,6 @@ main = new(function() {
     for(i in opt) this.opt[i] = opt[i];
     this.lang = document.documentElement.getAttribute('lang') || 'en';
     this.skipComma = (this.lang=='en');
-    console.log(this.lang);
     var t = document.querySelectorAll(this.opt.qsSort + ', table[' + this.opt.attrFilter + ']');
     //t.forEach(this.prepare.bind(this));
     for (i = 0; i < t.length; i++) this.prepare(t[i]);
